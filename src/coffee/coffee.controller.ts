@@ -16,13 +16,15 @@ export class CoffeeController {
     }
 
     @Get(':id')
-    findOne (@Param('id') id: string ){
+    findOne (@Param('id') id: number ){
         
-        return this.coffeeService.findOne(id);
+        return this.coffeeService.findOne('' +id);
     }
 
     @Post()
     create (@Body() createCoffeeDTO: CreateCoffeeDto ){
+        //console.log(createCoffeeDTO instanceof CreateCoffeeDto);
+        
         return this.coffeeService.create(createCoffeeDTO);
     }
 
