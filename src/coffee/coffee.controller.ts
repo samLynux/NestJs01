@@ -1,15 +1,17 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 
 @Controller('coffee')
 export class CoffeeController {
 
     @Get()
-    findAll (){
-        return "all";
+    findAll (@Query() paginationQuery){
+        const {limit, offset} = paginationQuery; 
+        return `limit ${limit} offest ${offset}`;
     }
 
     @Get(':id')
     findOne (@Param('id') id: string ){
+        
         return `returns ${id}`;
     }
 
