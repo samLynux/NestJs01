@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { coffee } from 'src/coffee/entities/coffee.entity';
 import { flavor } from 'src/coffee/entities/flavor.entity';
 import { PaginationQueryDTO } from 'src/common/dto/pagination-query.dto';
-import { Event } from 'src/events/entities/event-entity';
+import { EventEntity } from 'src/events/entities/event-entity';
 import { Connection, Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
@@ -89,7 +89,7 @@ export class CoffeesService {
         try{
             Coffee.recommendations++;
 
-            const recommendEvent = new Event();
+            const recommendEvent = new EventEntity();
             recommendEvent.name = 'recommend_coffee';
             recommendEvent.type = 'coffee';
             recommendEvent.payload = {coffeeId: Coffee.id};

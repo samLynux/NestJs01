@@ -1,15 +1,16 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index,PrimaryGeneratedColumn } from "typeorm";
 
 
-
+@Index(['type', 'name'])
 @Entity()
-export class Event{
+export class EventEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     type: string;
 
+    @Index()
     @Column()
     name: string;
 
