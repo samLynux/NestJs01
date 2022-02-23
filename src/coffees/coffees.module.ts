@@ -7,7 +7,7 @@ import { CoffeesService } from './coffees.service';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([coffee, flavor])
+        TypeOrmModule.forFeature([coffee, flavor, Event])
     ],
     controllers:[
         CoffeeController
