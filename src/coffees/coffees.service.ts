@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { coffee } from 'src/coffee/entities/coffee.entity';
 import { flavor } from 'src/coffee/entities/flavor.entity';
@@ -9,7 +9,7 @@ import { COFFEE_BRANDS } from './coffees.constants';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
-@Injectable()
+@Injectable({scope: Scope.REQUEST})
 export class CoffeesService {
     constructor(
         @InjectRepository(coffee)
@@ -19,7 +19,7 @@ export class CoffeesService {
         private readonly connection: Connection,
         @Inject(COFFEE_BRANDS) coffeebrands: string[]
     ){
-        console.log(coffeebrands);
+        console.log('CoffeeService Instantiated');
         
     }
 

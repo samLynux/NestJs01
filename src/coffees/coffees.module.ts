@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common';
+import { Module, Scope } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { async } from 'rxjs';
 import { CoffeeController } from 'src/coffee/coffee.controller';
 import { coffee } from 'src/coffee/entities/coffee.entity';
 import { flavor } from 'src/coffee/entities/flavor.entity';
@@ -19,7 +20,8 @@ import { CoffeesService } from './coffees.service';
         CoffeesService,
         {
             provide:COFFEE_BRANDS, 
-            useValue: ['buddy brew', 'nescafe']
+            useFactory: async () => ['buddy brew', 'nescafe'],
+            scope: Scope.TRANSIENT,
         }
     ],
     exports: [CoffeesService],
