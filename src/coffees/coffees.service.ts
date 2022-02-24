@@ -9,7 +9,7 @@ import { COFFEE_BRANDS } from './coffees.constants';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
-@Injectable({scope: Scope.REQUEST})
+@Injectable()
 export class CoffeesService {
     constructor(
         @InjectRepository(coffee)
