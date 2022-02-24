@@ -15,6 +15,7 @@ import { CoffeesService } from './coffees.service';
     ],
     providers: [
         CoffeesService
-    ]
+    ],
+    exports: [CoffeesService],
 })
 export class CoffeesModule {}
