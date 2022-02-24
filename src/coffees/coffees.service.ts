@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus, Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { coffee } from 'src/coffee/entities/coffee.entity';
 import { flavor } from 'src/coffee/entities/flavor.entity';
@@ -17,9 +18,11 @@ export class CoffeesService {
         @InjectRepository(flavor)
         private readonly flavorRepository: Repository<flavor>,
         private readonly connection: Connection,
-        @Inject(COFFEE_BRANDS) coffeebrands: string[]
+        private readonly configService: ConfigService,
+
     ){
-        console.log('CoffeeService Instantiated');
+        const databaseHost = this.configService.get<string>('DATABASE_HOST', 'localhost');
+        console.log(databaseHost);
         
     }
 
