@@ -8,9 +8,7 @@ import { PaginationQueryDTO } from 'src/common/dto/pagination-query.dto';
 export class CoffeeController {
     constructor(
         private readonly coffeeService: CoffeesService
-        ){
-            console.log('CoffeeController Instantiated');
-        }
+        ){}
 
     @Get()
     findAll (@Query() paginationQuery: PaginationQueryDTO){
