@@ -1,11 +1,12 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, SetMetadata } from '@nestjs/common';
-import { ApiForbiddenResponse } from "@nestjs/swagger";
+import { ApiForbiddenResponse, ApiTags } from "@nestjs/swagger";
 import { CoffeesService } from 'src/coffees/coffees.service';
 import { CreateCoffeeDto } from 'src/coffees/dto/create-coffee.dto';
 import { UpdateCoffeeDto } from 'src/coffees/dto/update-coffee.dto';
 import { Public } from 'src/common/decorators/public-decorator';
 import { PaginationQueryDTO } from 'src/common/dto/pagination-query.dto';
 
+@ApiTags('coffee')
 @Controller('coffee')
 export class CoffeeController {
     constructor(
