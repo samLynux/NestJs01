@@ -1,9 +1,8 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, SetMetadata } from '@nestjs/common';
-import { resolve } from 'path/posix';
+import { ApiForbiddenResponse } from "@nestjs/swagger";
 import { CoffeesService } from 'src/coffees/coffees.service';
 import { CreateCoffeeDto } from 'src/coffees/dto/create-coffee.dto';
 import { UpdateCoffeeDto } from 'src/coffees/dto/update-coffee.dto';
-import { Protocol } from 'src/common/decorators/protocol-decorator';
 import { Public } from 'src/common/decorators/public-decorator';
 import { PaginationQueryDTO } from 'src/common/dto/pagination-query.dto';
 
@@ -13,6 +12,7 @@ export class CoffeeController {
         private readonly coffeeService: CoffeesService
         ){}
 
+    @ApiForbiddenResponse({description:'Forbidden.'})
     @Public()
     @Get()
     async findAll (@Query() paginationQuery: PaginationQueryDTO){
