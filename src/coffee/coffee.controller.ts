@@ -3,6 +3,7 @@ import { resolve } from 'path/posix';
 import { CoffeesService } from 'src/coffees/coffees.service';
 import { CreateCoffeeDto } from 'src/coffees/dto/create-coffee.dto';
 import { UpdateCoffeeDto } from 'src/coffees/dto/update-coffee.dto';
+import { Protocol } from 'src/common/decorators/protocol-decorator';
 import { Public } from 'src/common/decorators/public-decorator';
 import { PaginationQueryDTO } from 'src/common/dto/pagination-query.dto';
 
@@ -14,9 +15,11 @@ export class CoffeeController {
 
     @Public()
     @Get()
-    async findAll (@Query() paginationQuery: PaginationQueryDTO){
+    async findAll (@Protocol('https') protocol: string, @Query() paginationQuery: PaginationQueryDTO){
        // await new Promise(resolve => setTimeout(resolve, 5000) )
-        return this.coffeeService.findAll(paginationQuery);
+       console.log(protocol);
+        
+       return this.coffeeService.findAll(paginationQuery);
     }
 
     @Get(':id')
