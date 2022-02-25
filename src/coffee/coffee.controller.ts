@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, SetMetadata } from '@nestjs/common';
+import { resolve } from 'path/posix';
 import { CoffeesService } from 'src/coffees/coffees.service';
 import { CreateCoffeeDto } from 'src/coffees/dto/create-coffee.dto';
 import { UpdateCoffeeDto } from 'src/coffees/dto/update-coffee.dto';
@@ -13,8 +14,8 @@ export class CoffeeController {
 
     @Public()
     @Get()
-    findAll (@Query() paginationQuery: PaginationQueryDTO){
-        
+    async findAll (@Query() paginationQuery: PaginationQueryDTO){
+        await new Promise(resolve => setTimeout(resolve, 5000) )
         return this.coffeeService.findAll(paginationQuery);
     }
 
