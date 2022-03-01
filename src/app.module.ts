@@ -9,3 +9,5 @@ import { CoffeesModule } from './coffees/coffees.module';
   imports: [CoffeesModule],
   controllers: [AppController],
   providers: [AppService],
+})
+export class AppModule {}
