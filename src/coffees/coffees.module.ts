@@ -1,12 +1,10 @@
 import { Module, Scope } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { async } from 'rxjs';
-import { CoffeeController } from 'src/coffee/coffee.controller';
-import { coffee } from 'src/coffee/entities/coffee.entity';
-import { flavor } from 'src/coffee/entities/flavor.entity';
-import { EventEntity } from 'src/events/entities/event-entity';
-import { COFFEE_BRANDS } from './coffees.constants';
+import { CoffeeController } from '../coffee/coffee.controller';
+import { coffee } from '../coffee/entities/coffee.entity';
+import { flavor } from '../coffee/entities/flavor.entity';
+import { EventEntity } from '../events/entities/event-entity';
 import { CoffeesService } from './coffees.service';
 import coffeesConfig from './config/coffees.config';
 
