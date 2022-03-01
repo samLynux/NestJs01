@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { ConfigService, ConfigType } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { coffee } from 'src/coffee/entities/coffee.entity';
-import { flavor } from 'src/coffee/entities/flavor.entity';
+import { coffee } from '../coffee/entities/coffee.entity';
+import { flavor } from '../coffee/entities/flavor.entity';
 import { PaginationQueryDTO } from 'src/common/dto/pagination-query.dto';
-import { EventEntity } from 'src/events/entities/event-entity';
+import { EventEntity } from '../events/entities/event-entity';
 import { Connection, Repository } from 'typeorm';
 import { COFFEE_BRANDS } from './coffees.constants';
 import coffeesConfig from './config/coffees.config';
@@ -17,14 +17,11 @@ export class CoffeesService {
         @InjectRepository(coffee)
         private readonly coffeeRepository: Repository<coffee>,
         @InjectRepository(flavor)
-        private readonly flavorRepository: Repository<flavor>,
+        private readonly flavorsRepository: Repository<flavor>,
         private readonly connection: Connection,
-        @Inject(coffeesConfig.KEY)
-        private readonly coffeesConfiguration: ConfigType<typeof coffeesConfig>,
 
     ){
         
-        console.log(coffeesConfiguration.foo);
         
     }
 
@@ -84,11 +81,11 @@ export class CoffeesService {
     }
 
     private async preloadFlavorByName(name:string): Promise<flavor>{
-        const existingCoffeeFlavor = await this.flavorRepository.findOne({name});
+        const existingCoffeeFlavor = await this.flavorsRepository.findOne({name});
         if(existingCoffeeFlavor){
             return existingCoffeeFlavor;
         }
-        return this.flavorRepository.create({name});
+        return this.flavorsRepository.create({name});
     } 
 
     async recommendCoffee(Coffee: coffee){
